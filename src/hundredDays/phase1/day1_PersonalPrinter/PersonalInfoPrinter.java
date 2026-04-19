@@ -18,8 +18,9 @@ public class PersonalInfoPrinter {
         System.out.printf("Age: %-30d\n", ageYears);
         System.out.printf("Height: %-30d\n", heightCm);
         System.out.printf("Enrolled: %-30b\n", isStudent);
-        System.out.printf("Grade: %-30b\n", grade);
+        System.out.printf("Grade: %-30c\n", grade);
         System.out.printf("Able to Internship: %-30b\n", internshipAble);
+        //'%n' is better than unix hardcoded '\n' for all OS's
         if(internshipAble){
             System.out.println(name+ ", you are eligible for this opportunity.\nMake it worth!");
         }
@@ -35,11 +36,8 @@ public class PersonalInfoPrinter {
         return birthYear;
     }
     static boolean ableToInternship(char grade){
-        boolean able = false;
-        if(grade == 'A'|| grade == 'a'){
-            able = true;
-        }
-        return able;
+        //simplified logic
+        return grade == 'A'|| grade == 'a';
     }
 
 }
