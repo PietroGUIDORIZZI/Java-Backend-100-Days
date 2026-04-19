@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Java Syntax Study Workbook</title>
+  <style>
+    :root {
+      --ink: #20313a;
+      --muted: #5d6c74;
+      --line: #d9d0c4;
+      --paper: #fffdfa;
+      --teal: #0f766e;
+      --blue: #2563eb;
+      --amber: #f59e0b;
+      --rose: #e11d48;
+      --mint: #dcfce7;
+      --sky: #dbeafe;
+      --sun: #fef3c7;
+      --blush: #ffe4e6;
+      --lav: #ede9fe;
+    }
+
+    * { box-sizing: border-box; }
+    @page { size: A4; margin: 12mm; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: linear-gradient(180deg, #f5efe7, #ebe2d5);
+    }
+    .page {
+      width: 210mm;
+      min-height: 297mm;
+      margin: 0 auto;
+      padding: 10mm;
+      page-break-after: always;
+    }
+    .page:last-child { page-break-after: auto; }
+    .sheet {
+      min-height: 273mm;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 10mm;
+      box-shadow: 0 14px 38px rgba(32, 49, 58, 0.08);
+    }
+    h1, h2, h3, p { margin: 0; }
+    h1 {
+      font-size: 25pt;
+      letter-spacing: -0.04em;
+      margin-bottom: 2mm;
+    }
+    h2 {
+      font-size: 11pt;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--teal);
+      margin-bottom: 2.5mm;
+    }
+    h3 {
+      font-size: 10pt;
+      margin-bottom: 2mm;
+    }
+    p, li, .text {
+      font-size: 9.3pt;
+      line-height: 1.34;
+    }
+    .subtitle {
+      color: var(--muted);
+      font-size: 10.2pt;
+      margin-bottom: 5mm;
+      max-width: 42em;
+    }
+    .hero {
+      display: grid;
+      grid-template-columns: 1.3fr 0.7fr;
+      gap: 5mm;
+      margin-bottom: 5mm;
+    }
+    .card {
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 4mm;
+      background: linear-gradient(180deg, #ffffff, #fbf8f2);
+      break-inside: avoid;
+    }
+    .signal {
+      background: linear-gradient(135deg, #2563eb, #1d4ed8);
+      color: white;
+      border: none;
+    }
+    .signal h3 {
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      opacity: 0.85;
+    }
+    .signal p {
+      font-size: 14.5pt;
+      font-weight: 700;
+      line-height: 1.18;
+    }
+    .grid2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4mm;
+    }
+    .grid3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 4mm;
+    }
+    .full { grid-column: 1 / -1; }
+    ul {
+      margin: 0;
+      padding-left: 5mm;
+    }
+    li { margin: 1.2mm 0; }
+    .chiprow {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2mm;
+      margin-top: 2mm;
+    }
+    .chip {
+      border-radius: 999px;
+      padding: 1.2mm 2.6mm;
+      border: 1px solid var(--line);
+      font-size: 8pt;
+      font-weight: 700;
+      background: white;
+    }
+    .week {
+      border-radius: 14px;
+      padding: 3.5mm;
+      border: 1px solid var(--line);
+    }
+    .sun { background: var(--sun); }
+    .sky { background: var(--sky); }
+    .mint { background: var(--mint); }
+    .blush { background: var(--blush); }
+    .lav { background: var(--lav); }
+    .line {
+      height: 8mm;
+      border: 1px solid var(--line);
+      border-radius: 9px;
+      background: white;
+      margin-top: 2mm;
+    }
+    .code {
+      background: #162029;
+      color: #f8fafc;
+      border-radius: 12px;
+      padding: 3mm;
+      font-family: Consolas, "Courier New", monospace;
+      font-size: 8pt;
+      line-height: 1.35;
+      white-space: pre-wrap;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 8.7pt;
+    }
+    th, td {
+      border: 1px solid var(--line);
+      padding: 2.4mm;
+      vertical-align: top;
+      text-align: left;
+    }
+    th {
+      background: #f7fbfc;
+      color: var(--teal);
+      font-size: 8.3pt;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .small {
+      font-size: 8.4pt;
+      color: var(--muted);
+    }
+    .footer {
+      margin-top: 4mm;
+      text-align: right;
+      color: var(--muted);
+      font-size: 8pt;
+    }
+  </style>
+</head>
+<body>
+  <section class="page">
+    <div class="sheet">
+      <div class="hero">
+        <div>
+          <h1>Java Syntax Study Workbook</h1>
+          <p class="subtitle">Color workbook for learning Java syntax through mini-problems, short sessions, and repeatable review. Built for low-friction ADHD study.</p>
+          <div class="chiprow">
+            <span class="chip">10 min learn</span>
+            <span class="chip">15 min mini-problems</span>
+            <span class="chip">10 min old review</span>
+            <span class="chip">5 min mistake log</span>
+          </div>
+        </div>
+        <div class="card signal">
+          <h3>Study Rule</h3>
+          <p>One topic. Tiny reps. Stop while the session still feels clean.</p>
+        </div>
+      </div>
+
+      <div class="grid2">
+        <div class="card">
+          <h2>How To Use It</h2>
+          <ul>
+            <li>Pick one syntax topic only.</li>
+            <li>Copy one example with notes.</li>
+            <li>Rewrite it from memory.</li>
+            <li>Solve 2 mini-problems.</li>
+            <li>Redo 1 old mini-problem.</li>
+            <li>Write what you forgot before stopping.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h2>Move On Rule</h2>
+          <ul>
+            <li>You can write the syntax without notes.</li>
+            <li>You solved at least 4 of 5 mini-problems cleanly.</li>
+            <li>You know when to use it in a DSA problem.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top:4mm;">
+        <h2>30-Day Roadmap</h2>
+        <div class="grid3">
+          <div class="week sun">
+            <h3>Days 1-5</h3>
+            <p class="text">Variables, arithmetic, if/else, for, while, methods.</p>
+          </div>
+          <div class="week sky">
+            <h3>Days 6-10</h3>
+            <p class="text">Arrays, strings, review and speed reps.</p>
+          </div>
+          <div class="week mint">
+            <h3>Days 11-15</h3>
+            <p class="text">Nested loops, brute force thinking, ArrayList.</p>
+          </div>
+          <div class="week blush">
+            <h3>Days 16-20</h3>
+            <p class="text">HashSet, HashMap, frequency patterns, Two Sum.</p>
+          </div>
+          <div class="week lav">
+            <h3>Days 21-25</h3>
+            <p class="text">Deque as stack and queue, PriorityQueue.</p>
+          </div>
+          <div class="week sun">
+            <h3>Days 26-30</h3>
+            <p class="text">Recursion, 2D arrays, sorting, binary search.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top:4mm;">
+        <h2>Weekly Review Targets</h2>
+        <table>
+          <tr><th>Week</th><th>Primary Goal</th><th>Review Focus</th></tr>
+          <tr><td>1</td><td>Write basic syntax without looking.</td><td>Redo loops and conditionals from memory.</td></tr>
+          <tr><td>2</td><td>Feel comfortable with arrays and strings.</td><td>Spot indexing mistakes fast.</td></tr>
+          <tr><td>3</td><td>Use lists and nested loops cleanly.</td><td>Separate syntax mistakes from logic mistakes.</td></tr>
+          <tr><td>4</td><td>Map simple DSA problems to Set or Map.</td><td>Practice frequency counting.</td></tr>
+          <tr><td>5</td><td>Use stack, queue, and heap syntax naturally.</td><td>Review push/pop, offer/poll, offer/poll.</td></tr>
+        </table>
+      </div>
+
+      <div class="footer">Workbook Page 1</div>
+    </div>
+  </section>
+
+  <section class="page">
+    <div class="sheet">
+      <h1 style="font-size:21pt;">Mini-Problem Bank</h1>
+      <p class="subtitle">Solve tiny problems until the syntax starts to feel automatic. Keep them short. Repeat old ones often.</p>
+
+      <div class="grid2">
+        <div class="card sun">
+          <h2>Core Basics</h2>
+          <ul>
+            <li>Print your age.</li>
+            <li>Add two numbers.</li>
+            <li>Rectangle area.</li>
+            <li>Swap two values.</li>
+            <li>Minutes to seconds.</li>
+          </ul>
+        </div>
+        <div class="card sky">
+          <h2>If / Else</h2>
+          <ul>
+            <li>Even or odd.</li>
+            <li>Positive, negative, or zero.</li>
+            <li>Max of two numbers.</li>
+            <li>Is vowel.</li>
+            <li>Score to grade.</li>
+          </ul>
+        </div>
+        <div class="card mint">
+          <h2>Loops</h2>
+          <ul>
+            <li>Print 1 to 10.</li>
+            <li>Print 10 to 1.</li>
+            <li>Sum 1 to n.</li>
+            <li>Multiplication table.</li>
+            <li>Count digits.</li>
+          </ul>
+        </div>
+        <div class="card blush">
+          <h2>Methods</h2>
+          <ul>
+            <li>`add(a, b)`</li>
+            <li>`isEven(n)`</li>
+            <li>`max(a, b)`</li>
+            <li>`square(n)`</li>
+            <li>`countDigits(n)`</li>
+          </ul>
+        </div>
+        <div class="card lav">
+          <h2>Arrays</h2>
+          <ul>
+            <li>Print all elements.</li>
+            <li>Find sum.</li>
+            <li>Find maximum.</li>
+            <li>Find target index.</li>
+            <li>Count evens.</li>
+          </ul>
+        </div>
+        <div class="card sun">
+          <h2>Strings</h2>
+          <ul>
+            <li>Count vowels.</li>
+            <li>Reverse a string.</li>
+            <li>Check palindrome.</li>
+            <li>Count uppercase letters.</li>
+            <li>Count char frequency.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top:4mm;">
+        <h2>Collections Mini-Problems</h2>
+        <table>
+          <tr><th>Syntax</th><th>Mini-Problems</th></tr>
+          <tr><td>ArrayList</td><td>Add 5 values, sum the list, remove evens, reverse print.</td></tr>
+          <tr><td>HashSet</td><td>Contains duplicate, count distinct numbers, common elements of two arrays.</td></tr>
+          <tr><td>HashMap</td><td>Count frequencies, first repeated number, first unique character, Two Sum.</td></tr>
+          <tr><td>Deque stack</td><td>Reverse string, valid parentheses, remove adjacent duplicates.</td></tr>
+          <tr><td>Deque queue</td><td>Queue simulation, print queue order, BFS on tiny graph.</td></tr>
+          <tr><td>PriorityQueue</td><td>K smallest, K largest, repeated min extraction.</td></tr>
+        </table>
+      </div>
+
+      <div class="card" style="margin-top:4mm;">
+        <h2>Quick Syntax References</h2>
+        <div class="grid2">
+          <div class="code">List&lt;Integer&gt; list = new ArrayList&lt;&gt;();
+list.add(10);
+int x = list.get(0);
+
+Set&lt;Integer&gt; set = new HashSet&lt;&gt;();
+set.add(5);
+boolean ok = set.contains(5);</div>
+          <div class="code">Map&lt;Integer, Integer&gt; map = new HashMap&lt;&gt;();
+map.put(3, 1);
+int c = map.getOrDefault(3, 0);
+
+Deque&lt;Integer&gt; stack = new ArrayDeque&lt;&gt;();
+stack.push(4);
+int top = stack.pop();</div>
+        </div>
+      </div>
+
+      <div class="footer">Workbook Page 2</div>
+    </div>
+  </section>
+
+  <section class="page">
+    <div class="sheet">
+      <h1 style="font-size:21pt;">Daily Practice Pages</h1>
+      <p class="subtitle">Use these pages repeatedly. Print multiple copies if useful.</p>
+
+      <div class="grid2">
+        <div class="card">
+          <h2>Daily Plan</h2>
+          <div class="line"></div>
+          <h2 style="margin-top:3mm;">Topic</h2>
+          <div class="line"></div>
+          <h2 style="margin-top:3mm;">Syntax To Learn</h2>
+          <div class="line"></div>
+          <div class="line"></div>
+        </div>
+        <div class="card">
+          <h2>Today’s Mini-Problems</h2>
+          <div class="line"></div>
+          <div class="line"></div>
+          <div class="line"></div>
+          <div class="line"></div>
+        </div>
+      </div>
+
+      <div class="card full" style="margin-top:4mm;">
+        <h2>Write The Syntax From Memory</h2>
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+      </div>
+
+      <div class="grid2" style="margin-top:4mm;">
+        <div class="card mint">
+          <h2>Mini-Problem 1</h2>
+          <div class="line"></div>
+          <div class="line"></div>
+          <div class="line"></div>
+          <div class="line"></div>
+        </div>
+        <div class="card sky">
+          <h2>Mini-Problem 2</h2>
+          <div class="line"></div>
+          <div class="line"></div>
+          <div class="line"></div>
+          <div class="line"></div>
+        </div>
+      </div>
+
+      <div class="grid2" style="margin-top:4mm;">
+        <div class="card blush">
+          <h2>Old Problem Review</h2>
+          <div class="line"></div>
+          <div class="line"></div>
+          <div class="line"></div>
+        </div>
+        <div class="card sun">
+          <h2>Mistake Log</h2>
+          <div class="line"></div>
+          <div class="line"></div>
+          <div class="line"></div>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top:4mm;">
+        <h2>Finish Line</h2>
+        <ul>
+          <li><input type="checkbox"> I learned one syntax item.</li>
+          <li><input type="checkbox"> I solved two mini-problems.</li>
+          <li><input type="checkbox"> I reviewed one old problem.</li>
+          <li><input type="checkbox"> I wrote down what confused me.</li>
+          <li><input type="checkbox"> I stopped before overload.</li>
+        </ul>
+      </div>
+
+      <div class="footer">Workbook Page 3</div>
+    </div>
+  </section>
+</body>
+</html>

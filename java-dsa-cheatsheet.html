@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Java DSA Problem-Solving Cheat Sheet</title>
+  <style>
+    :root {
+      --bg: #f3efe6;
+      --paper: #fffdf8;
+      --ink: #1d2a33;
+      --muted: #5c6b73;
+      --accent: #0e7490;
+      --accent-2: #f59e0b;
+      --line: #d8d1c4;
+      --chip: #edf6f9;
+    }
+
+    * { box-sizing: border-box; }
+
+    @page {
+      size: A4;
+      margin: 12mm;
+    }
+
+    body {
+      margin: 0;
+      background:
+        radial-gradient(circle at top left, #fef3c7 0, transparent 28%),
+        radial-gradient(circle at top right, #dbeafe 0, transparent 24%),
+        linear-gradient(180deg, var(--bg), #e8e0d3);
+      color: var(--ink);
+      font-family: "Segoe UI", "Trebuchet MS", Arial, sans-serif;
+      line-height: 1.28;
+    }
+
+    .page {
+      width: 210mm;
+      min-height: 297mm;
+      margin: 0 auto;
+      padding: 10mm;
+    }
+
+    .sheet {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 14mm 14mm 10mm;
+      box-shadow: 0 12px 40px rgba(29, 42, 51, 0.08);
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.5fr 0.8fr;
+      gap: 10mm;
+      align-items: start;
+      margin-bottom: 8mm;
+    }
+
+    h1, h2, h3, p { margin: 0; }
+
+    h1 {
+      font-size: 23pt;
+      line-height: 1.02;
+      letter-spacing: -0.04em;
+      margin-bottom: 3mm;
+    }
+
+    .subtitle {
+      color: var(--muted);
+      font-size: 10.5pt;
+      max-width: 38em;
+    }
+
+    .card {
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: linear-gradient(180deg, #ffffff, #fbf8f1);
+      padding: 4mm;
+    }
+
+    .signal {
+      background: linear-gradient(135deg, #0e7490, #155e75);
+      color: white;
+      border: none;
+    }
+
+    .signal h3 {
+      font-size: 10pt;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-bottom: 2mm;
+      opacity: 0.85;
+    }
+
+    .signal p {
+      font-size: 16pt;
+      font-weight: 700;
+      line-height: 1.1;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 5mm;
+    }
+
+    .full {
+      grid-column: 1 / -1;
+    }
+
+    h2 {
+      font-size: 11pt;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--accent);
+      margin-bottom: 2.2mm;
+    }
+
+    ul, ol {
+      margin: 0;
+      padding-left: 5mm;
+    }
+
+    li {
+      margin: 1.3mm 0;
+      font-size: 9.2pt;
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2mm;
+      margin-top: 3mm;
+    }
+
+    .pill {
+      background: var(--chip);
+      color: var(--ink);
+      border: 1px solid #cce3ea;
+      border-radius: 999px;
+      padding: 1.4mm 3mm;
+      font-size: 8.1pt;
+      font-weight: 600;
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4mm;
+    }
+
+    .code {
+      background: #162029;
+      color: #f8fafc;
+      border-radius: 12px;
+      padding: 3.4mm;
+      font-family: Consolas, "Courier New", monospace;
+      font-size: 7.8pt;
+      line-height: 1.35;
+      white-space: pre-wrap;
+    }
+
+    .accent-note {
+      border-left: 4px solid var(--accent-2);
+      padding-left: 3mm;
+      color: var(--muted);
+      font-size: 8.8pt;
+    }
+
+    .table {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 1.5mm 3mm;
+      align-items: start;
+      font-size: 8.6pt;
+    }
+
+    .table strong {
+      color: var(--ink);
+    }
+
+    .footer {
+      margin-top: 5mm;
+      color: var(--muted);
+      font-size: 8pt;
+      text-align: right;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="sheet">
+      <section class="hero">
+        <div>
+          <h1>Java DSA Problem-Solving Cheat Sheet</h1>
+          <p class="subtitle">
+            A compact workflow for breaking coding problems into solvable steps,
+            choosing the right pattern, and writing cleaner Java solutions.
+          </p>
+          <div class="pill-row">
+            <span class="pill">Input -> Output</span>
+            <span class="pill">Pattern Match</span>
+            <span class="pill">Brute Force First</span>
+            <span class="pill">Optimize by Constraint</span>
+            <span class="pill">Test Edge Cases</span>
+          </div>
+        </div>
+        <div class="card signal">
+          <h3>Core Loop</h3>
+          <p>Understand. Pattern match. Code. Verify.</p>
+        </div>
+      </section>
+
+      <section class="grid">
+        <div class="card">
+          <h2>1. Breakdown Steps</h2>
+          <ol>
+            <li>Restate the problem in one sentence.</li>
+            <li>Write exact input and output types.</li>
+            <li>Check constraints: size, ordering, duplicates, ranges.</li>
+            <li>Trace one small example by hand.</li>
+            <li>Write a brute-force idea first.</li>
+            <li>Look for a known pattern or better structure.</li>
+            <li>Estimate time and space before coding.</li>
+            <li>Test normal and edge cases after coding.</li>
+          </ol>
+        </div>
+
+        <div class="card">
+          <h2>2. Key Questions</h2>
+          <ul>
+            <li>Do I need a value, index, count, path, or boolean?</li>
+            <li>Is the data sorted or can I sort it?</li>
+            <li>Are duplicates allowed?</li>
+            <li>Does contiguous matter?</li>
+            <li>Do I need the best answer or any valid answer?</li>
+            <li>What is repeated enough to justify a data structure?</li>
+            <li>What complexity does the constraint force?</li>
+          </ul>
+        </div>
+
+        <div class="card full">
+          <h2>3. Pattern Recognition Map</h2>
+          <div class="two-col">
+            <ul>
+              <li><strong>HashMap / HashSet:</strong> fast lookup, complement, frequency, duplicates</li>
+              <li><strong>Two pointers:</strong> sorted arrays, opposite ends, partitioning</li>
+              <li><strong>Sliding window:</strong> contiguous subarray or substring</li>
+              <li><strong>Stack / Deque:</strong> matching pairs, next greater, monotonic scans</li>
+              <li><strong>Queue / BFS:</strong> shortest path in unweighted graph, levels</li>
+              <li><strong>DFS / Recursion:</strong> trees, graphs, backtracking</li>
+            </ul>
+            <ul>
+              <li><strong>Binary search:</strong> sorted data or monotonic answer space</li>
+              <li><strong>Dynamic programming:</strong> overlapping subproblems, choices</li>
+              <li><strong>Greedy:</strong> local best choice stays globally valid</li>
+              <li><strong>Heap / PriorityQueue:</strong> top K, streaming min/max</li>
+              <li><strong>Union-Find:</strong> connectivity and grouping</li>
+              <li><strong>Prefix sums:</strong> repeated range sums and counts</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card">
+          <h2>4. Java Defaults</h2>
+          <ul>
+            <li><strong>`HashMap&lt;K, V&gt;`</strong> for value to index or count</li>
+            <li><strong>`HashSet&lt;T&gt;`</strong> for existence checks</li>
+            <li><strong>`ArrayDeque&lt;T&gt;`</strong> for stack or queue behavior</li>
+            <li><strong>`PriorityQueue&lt;T&gt;`</strong> for heap problems</li>
+            <li><strong>`ArrayList&lt;T&gt;`</strong> for dynamic result building</li>
+            <li>Prefer arrays when size is fixed and index access matters</li>
+          </ul>
+          <p class="accent-note">Prefer `Deque` over old `Stack` in modern Java.</p>
+        </div>
+
+        <div class="card">
+          <h2>5. Constraint Heuristics</h2>
+          <ul>
+            <li><strong>`n &lt;= 100`</strong>: `O(n^2)` may be fine</li>
+            <li><strong>`n ~ 10^5`</strong>: usually target `O(n)` or `O(n log n)`</li>
+            <li><strong>Heavy repeated lookup</strong>: use map or set</li>
+            <li><strong>Sorted + threshold</strong>: think binary search</li>
+            <li><strong>All combinations</strong>: backtracking or bitmasking</li>
+            <li><strong>Best over many choices</strong>: DP or greedy</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h2>6. Interview Workflow</h2>
+          <ol>
+            <li>Restate the problem.</li>
+            <li>Ask clarifying questions.</li>
+            <li>Present brute force.</li>
+            <li>Improve with a pattern.</li>
+            <li>State complexity.</li>
+            <li>Code cleanly.</li>
+            <li>Dry-run with examples.</li>
+            <li>Check edge cases last.</li>
+          </ol>
+        </div>
+
+        <div class="card">
+          <h2>7. Common Mistakes</h2>
+          <ul>
+            <li>Coding before defining input and output</li>
+            <li>Ignoring constraints</li>
+            <li>Jumping to optimization too early</li>
+            <li>Choosing the wrong data structure</li>
+            <li>Skipping small manual examples</li>
+            <li>Forgetting empty input, boundaries, duplicates, overflow</li>
+          </ul>
+        </div>
+
+        <div class="card full">
+          <h2>8. Problem Template</h2>
+          <div class="code">Problem:
+Restate in your own words
+
+Input:
+Type, size, constraints
+
+Output:
+What to return
+
+Brute Force:
+Simplest correct idea
+
+Pattern / Better Idea:
+HashMap? Sliding window? Stack? BFS? DP?
+
+Data Structure:
+Array / Map / Set / Deque / Heap / Graph
+
+Algorithm Steps:
+1. ...
+2. ...
+3. ...
+
+Complexity:
+Time: ...
+Space: ...
+
+Edge Cases:
+Empty input, one element, duplicates, negatives, overflow</div>
+        </div>
+
+        <div class="card full">
+          <h2>9. Fast Example: Two Sum</h2>
+          <div class="table">
+            <strong>Problem</strong><span>Return indices of two numbers whose sum equals target.</span>
+            <strong>Brute Force</strong><span>Check every pair: `O(n^2)`.</span>
+            <strong>Better Idea</strong><span>Store seen value -> index in a `HashMap`.</span>
+            <strong>Why It Works</strong><span>Each element asks: "Have I already seen `target - current`?"</span>
+          </div>
+          <div class="code">Map&lt;Integer, Integer&gt; seen = new HashMap&lt;&gt;();
+
+for (int i = 0; i &lt; nums.length; i++) {
+    int need = target - nums[i];
+    if (seen.containsKey(need)) {
+        return new int[] { seen.get(need), i };
+    }
+    seen.put(nums[i], i);
+}</div>
+        </div>
+
+        <div class="card full">
+          <h2>10. Edge-Case Checklist</h2>
+          <div class="pill-row">
+            <span class="pill">empty input</span>
+            <span class="pill">single element</span>
+            <span class="pill">duplicates</span>
+            <span class="pill">negative numbers</span>
+            <span class="pill">sorted vs unsorted</span>
+            <span class="pill">index bounds</span>
+            <span class="pill">overflow</span>
+            <span class="pill">no valid answer</span>
+          </div>
+        </div>
+      </section>
+
+      <div class="footer">Use: understand -> choose pattern -> code -> verify</div>
+    </div>
+  </div>
+</body>
+</html>

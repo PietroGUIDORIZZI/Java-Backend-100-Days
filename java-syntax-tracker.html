@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Java Syntax Tracker</title>
+  <style>
+    :root {
+      --bg: #f4efe6;
+      --paper: #fffdfa;
+      --ink: #22313a;
+      --muted: #5f6f78;
+      --line: #d9d1c5;
+      --teal: #0f766e;
+      --amber: #f59e0b;
+      --rose: #ef4444;
+      --blue: #2563eb;
+      --mint: #dff7ef;
+      --sky: #e6f0ff;
+      --sun: #fff2cf;
+      --blush: #ffe4e6;
+    }
+
+    * { box-sizing: border-box; }
+    @page { size: A4; margin: 12mm; }
+
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Arial, sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at top left, #fff5d6 0, transparent 28%),
+        radial-gradient(circle at top right, #dceeff 0, transparent 22%),
+        linear-gradient(180deg, var(--bg), #e9e0d4);
+    }
+
+    .page {
+      width: 210mm;
+      min-height: 297mm;
+      margin: 0 auto;
+      padding: 10mm;
+    }
+
+    .sheet {
+      min-height: 273mm;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 10mm;
+      box-shadow: 0 14px 40px rgba(34, 49, 58, 0.08);
+    }
+
+    h1, h2, h3, p { margin: 0; }
+    h1 {
+      font-size: 24pt;
+      letter-spacing: -0.04em;
+      margin-bottom: 2mm;
+    }
+    .subtitle {
+      color: var(--muted);
+      font-size: 10pt;
+      margin-bottom: 5mm;
+    }
+    .hero {
+      display: grid;
+      grid-template-columns: 1.3fr 0.7fr;
+      gap: 5mm;
+      margin-bottom: 5mm;
+    }
+    .card {
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 4mm;
+      background: linear-gradient(180deg, #fff, #fbf8f2);
+    }
+    .focus {
+      background: linear-gradient(135deg, #0f766e, #115e59);
+      color: white;
+      border: none;
+    }
+    .focus h3 {
+      font-size: 10pt;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      opacity: 0.85;
+      margin-bottom: 2mm;
+    }
+    .focus p {
+      font-size: 15pt;
+      font-weight: 700;
+      line-height: 1.15;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 4mm;
+    }
+    .full { grid-column: 1 / -1; }
+    h2 {
+      font-size: 10pt;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--teal);
+      margin-bottom: 2.5mm;
+    }
+    .checklist-row {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 3mm;
+    }
+    .topic-list {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2mm 4mm;
+      font-size: 9pt;
+    }
+    .boxline, .line, .square {
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: #fff;
+    }
+    .square {
+      width: 5mm;
+      height: 5mm;
+      display: inline-block;
+      vertical-align: middle;
+      margin-right: 2mm;
+      border-radius: 4px;
+    }
+    .topic {
+      padding: 2mm 2.5mm;
+      border-radius: 10px;
+      background: var(--sky);
+    }
+    .topic.sun { background: var(--sun); }
+    .topic.mint { background: var(--mint); }
+    .topic.blush { background: var(--blush); }
+    ul {
+      margin: 0;
+      padding-left: 5mm;
+      font-size: 9pt;
+    }
+    li { margin: 1.2mm 0; }
+    .line {
+      height: 9mm;
+      margin-top: 2mm;
+    }
+    .lines .line { margin-top: 1.8mm; }
+    .small-lines .line { height: 7mm; }
+    .daily-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3mm;
+    }
+    .tagrow {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2mm;
+      margin-top: 2mm;
+    }
+    .tag {
+      font-size: 8pt;
+      font-weight: 700;
+      border-radius: 999px;
+      padding: 1.2mm 2.6mm;
+      border: 1px solid var(--line);
+      background: #fff;
+    }
+    .footer {
+      margin-top: 4mm;
+      color: var(--muted);
+      font-size: 8pt;
+      text-align: right;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="sheet">
+      <section class="hero">
+        <div>
+          <h1>Java Syntax Tracker</h1>
+          <p class="subtitle">One-page ADHD-friendly progress sheet for daily syntax reps, mini-problems, and review.</p>
+          <div class="tagrow">
+            <span class="tag">1 new topic</span>
+            <span class="tag">2 new mini-problems</span>
+            <span class="tag">1 old review</span>
+            <span class="tag">5 min mistake log</span>
+          </div>
+        </div>
+        <div class="card focus">
+          <h3>Daily Rule</h3>
+          <p>Stop after one clean win. Consistency beats overload.</p>
+        </div>
+      </section>
+
+      <section class="grid">
+        <div class="card">
+          <h2>Today</h2>
+          <div class="line"></div>
+          <h2 style="margin-top:3mm;">Topic</h2>
+          <div class="line"></div>
+          <h2 style="margin-top:3mm;">Session Length</h2>
+          <div class="line"></div>
+        </div>
+
+        <div class="card">
+          <h2>Daily Checklist</h2>
+          <ul>
+            <li><span class="square"></span>Learn the syntax item</li>
+            <li><span class="square"></span>Write one example with notes</li>
+            <li><span class="square"></span>Write one example from memory</li>
+            <li><span class="square"></span>Solve 2 mini-problems</li>
+            <li><span class="square"></span>Redo 1 old mini-problem</li>
+            <li><span class="square"></span>Log mistakes before stopping</li>
+          </ul>
+        </div>
+
+        <div class="card full">
+          <h2>Roadmap Progress</h2>
+          <div class="topic-list">
+            <div class="topic sun"><span class="square"></span>Variables and arithmetic</div>
+            <div class="topic sun"><span class="square"></span>If / else</div>
+            <div class="topic sun"><span class="square"></span>For loops</div>
+            <div class="topic sun"><span class="square"></span>While loops</div>
+            <div class="topic mint"><span class="square"></span>Methods</div>
+            <div class="topic mint"><span class="square"></span>Arrays</div>
+            <div class="topic mint"><span class="square"></span>Strings</div>
+            <div class="topic mint"><span class="square"></span>Nested loops</div>
+            <div class="topic"><span class="square"></span>ArrayList</div>
+            <div class="topic"><span class="square"></span>HashSet</div>
+            <div class="topic"><span class="square"></span>HashMap</div>
+            <div class="topic"><span class="square"></span>Deque stack</div>
+            <div class="topic blush"><span class="square"></span>Deque queue</div>
+            <div class="topic blush"><span class="square"></span>PriorityQueue</div>
+            <div class="topic blush"><span class="square"></span>Recursion</div>
+            <div class="topic blush"><span class="square"></span>2D arrays</div>
+            <div class="topic blush"><span class="square"></span>Sorting</div>
+            <div class="topic blush"><span class="square"></span>Binary search</div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h2>Mini-Problems</h2>
+          <div class="small-lines">
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h2>What Syntax Did I Forget?</h2>
+          <div class="small-lines">
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+          </div>
+        </div>
+
+        <div class="card full">
+          <h2>Focus Ladder</h2>
+          <div class="daily-grid">
+            <div class="boxline" style="padding:3mm; background:#f0fdf4;">
+              <strong>Good focus:</strong>
+              <ul>
+                <li>Learn syntax</li>
+                <li>Do 2 new mini-problems</li>
+                <li>Redo 1 old problem</li>
+              </ul>
+            </div>
+            <div class="boxline" style="padding:3mm; background:#eff6ff;">
+              <strong>Low focus:</strong>
+              <ul>
+                <li>Copy 1 example</li>
+                <li>Do 1 tiny problem</li>
+                <li>Stop early without guilt</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h2>Tomorrow</h2>
+          <div class="line"></div>
+          <div class="line"></div>
+          <div class="line"></div>
+        </div>
+
+        <div class="card">
+          <h2>Wins</h2>
+          <div class="line"></div>
+          <div class="line"></div>
+          <div class="line"></div>
+        </div>
+      </section>
+
+      <div class="footer">Rule: move on only when you can solve 4 out of 5 without notes.</div>
+    </div>
+  </div>
+</body>
+</html>
