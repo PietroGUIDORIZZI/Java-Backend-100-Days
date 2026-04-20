@@ -1,4 +1,4 @@
-package hundredDays.phase1.DogClass;
+package hundredDays.phase1.Day6_DogClass;
 
 public class Main {
    static void main(String[] args){
