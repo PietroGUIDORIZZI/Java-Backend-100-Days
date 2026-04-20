@@ -1,4 +1,4 @@
-package hundredDays.phase1.Day6_DogClass;
+package hundredDays.phase1.day6_DogClass;
 
 public class Dog {
     String name;

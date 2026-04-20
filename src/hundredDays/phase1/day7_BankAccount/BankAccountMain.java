@@ -1,4 +1,4 @@
-package hundredDays.phase1.Day7_BankAccount;
+package hundredDays.phase1.day7_BankAccount;
 
 public class BankAccountMain {
     public static void main(String[] args){
