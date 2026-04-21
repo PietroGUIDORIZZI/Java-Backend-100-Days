@@ -1,7 +1,7 @@
 package hundredDays.phase1.day3_NameFormatter;
 
 public class NameFormatter {
-    public static void main(String[] args){
+    static void main(String[] args){
         String fullName = "   Pietro Guidorizzi";
         int len = fullName.length();
         String upperCase = fullName.toUpperCase();

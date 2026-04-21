@@ -1,7 +1,7 @@
 package hundredDays.phase1.day5_FizzBuzz_StarPyramid;
 
 public class FizzBuzz_StarPyramid {
-    public static void main(String[] args) {
+    static void main(String[] args) {
 
         for (int i = 1; i <= 50; i++) {
             if (i % 15 == 0) {

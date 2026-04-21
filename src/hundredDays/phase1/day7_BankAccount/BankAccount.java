@@ -1,7 +1,7 @@
 package hundredDays.phase1.day7_BankAccount;
 
 public class BankAccount {
-    private String owner;
+    private final String owner;
     private double balance;
     private int withdrawCounterTaxAble=0;
 

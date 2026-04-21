@@ -3,7 +3,7 @@ package hundredDays.phase1.day1_PersonalPrinter;
 
 
 public class PersonalInfoPrinter {
-    public static void main(String[] args) {
+    static void main(String[] args) {
         String name = "Pietro";
         int ageYears = 31;
         int heightCm = 177;

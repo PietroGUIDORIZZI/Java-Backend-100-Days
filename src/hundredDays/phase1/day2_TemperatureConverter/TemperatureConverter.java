@@ -1,7 +1,7 @@
 package hundredDays.phase1.day2_TemperatureConverter;
 
 public class TemperatureConverter {
-    public static void main(String[] args){
+    static void main(String[] args){
         double celsius = 25.0;
         double fahrenheit = (celsius * 9.0/5.0)+32;
         double kelvin = celsius + 273.15;

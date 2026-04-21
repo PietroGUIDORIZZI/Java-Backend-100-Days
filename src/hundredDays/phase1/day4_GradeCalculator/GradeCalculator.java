@@ -1,27 +1,40 @@
 package hundredDays.phase1.day4_GradeCalculator;
 import java.util.Scanner;
 public class GradeCalculator {
-    public static void main(String[] args){
+    static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        System.out.println("Input your test score: ");
+        System.out.println("Input your test score 1-10: ");
         int score = sc.nextInt();
+
         char grade;
-        boolean atRisk = score<=60;
-        if (score >= 90){
-            grade = 'A';
+        boolean atRisk = score<=6;
+        
+        if (!(score < 1 || score > 11)) {
 
-        }else if(score >= 80 ){
-            grade = 'B';
+            if (score >= 9) {
+                grade = 'A';
 
-        }else if(score >= 70){
-            grade = 'C';
+            } else if (score >= 8) {
+                grade = 'B';
 
-        }else if(score >= 60){
-            grade = 'D';
+            } else if (score >= 7) {
+                grade = 'C';
 
-        }else {
+            } else if (score >= 6) {
+                grade = 'D';
+
+            } else if(score < 4){
+                grade = 'F';
+                System.out.println("You failed. try again next year.");
+
+            } else {
+                grade = 'F';
+            }
+        } else {
+            System.out.println("You've Cheated! Invalid Score! You are enrolled for the next year.");
             grade = 'F';
-
+            score = 0;
+            atRisk = true;
         }
         System.out.println("Score: " + score);
         System.out.println("Grade: " + grade);

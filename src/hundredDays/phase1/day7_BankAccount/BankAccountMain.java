@@ -1,7 +1,7 @@
 package hundredDays.phase1.day7_BankAccount;
 
 public class BankAccountMain {
-    public static void main(String[] args){
+    static void main(String[] args){
         BankAccount account = new BankAccount("Pietro", 1000.0);
         account.deposit(500.0);
         System.out.println(account.getBalance()); // 1500.0
